@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a9c9ff, #f5f5f5);
+      color: #616161;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: #81c784;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #00796b;
+    }
+
+    header {
+      background: linear-gradient(to right, #81c784, #e1bee7);
+      color: #333;
+      padding: 4rem 0;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      animation: slideInFromLeft 1.5s ease-out;
+    }
+
+    .main-layout {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      height: calc(100vh - 8rem); /* header height approx */
+      overflow: hidden;
+    }
+
+    .sidebar-left {
+      width: 260px;
+      background-color: #ffffff;
+      border-right: 1px solid #ddd;
+      padding: 2rem 1.5rem;
+      height: 100%;
+      overflow-y: auto;
+      position: sticky;
+      top: 0;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-left h3 {
+      color: #81c784;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .sidebar-left a {
+      display: block;
+      margin: 1rem 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #616161;
+      transition: transform 0.2s ease, color 0.3s ease;
+    }
+
+    .sidebar-left a:hover {
+      transform: scale(1.05);
+      color: #81c784;
+    }
+
+    .content {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 3rem;
+    }
+
+    .profile {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: fadeInUp 1.5s ease-out;
+      backdrop-filter: blur(8px);
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #81c784;
+      margin-bottom: 2rem;
+      transition: transform 0.4s ease, border-color 0.3s ease;
+    }
+
+    .profile-photo:hover {
+      transform: scale(1.1);
+      border-color: #4caf50;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.8);
+      margin-top: 2rem;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease-out;
+      backdrop-filter: blur(8px);
+    }
+
+    section:hover {
+      transform: translateY(-8px);
+    }
+
+    section h2 {
+      color: #81c784;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      background: #f1f8e9;
+      border-left: 5px solid #81c784;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    ul li:hover {
+      background-color: #e8f5e9;
+    }
+
+    .contact p, .social-links a {
+      margin: 0.6rem 0;
+      display: block;
+    }
+
+    .social-links {
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-right: 15px;
+      font-size: 1.4rem;
+      background: rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      background: #81c784;
+      color: white;
+    }
+
+    .message form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1.5rem;
+    }
+
+    .message input,
+    .message textarea {
+      padding: 1rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .message input:focus,
+    .message textarea:focus {
+      border-color: #81c784;
+      box-shadow: 0 0 10px rgba(0, 121, 107, 0.3);
+    }
+
+    .message button {
+      background-color: #81c784;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .message button:hover {
+      background-color: #66bb6a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #ffffff;
+      color: #616161;
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInFromLeft {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+      .main-layout {
+        flex-direction: column;
+      }
+      .sidebar-left {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Portfolio</h1>
+  </header>
+
+  <div class="main-layout">
+    <div class="sidebar-left">
+      <h3>Navigation</h3>
+      <a href="#profile">Profile</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#message">Message Me</a>
+      <a href="#internships">Internships & Certificates</a>
+    </div>
+
+    <div class="content">
+      <section class="profile" id="profile">
+        <img src="profile photo.jpg" alt="My Photo" class="profile-photo" />
+        <h2>Hello, I'm <span style="color:#00796b">Atharv Patil</span></h2>
+        <p>Welcome to my personal portfolio website. I'm a passionate developer skilled in both front-end and back-end technologies.</p>
+      </section>
+
+      <section class="education" id="education">
+        <h2>Education</h2>
+        <p><strong>College:</strong> P.R. Pote College Of Engineering And Management</p>
+        <p><strong>Year:</strong> 2025</p>
+        <p><strong>Branch:</strong> B.Tech CSE(AIML)</p>
+      </section>
+
+      <section class="skills" id="skills">
+        <h2>Skills</h2>
+        <ul>
+          <li>C</li>
+          <li>Java</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+        </ul>
+      </section>
+
+      <section class="projects" id="projects">
+        <h2>Projects</h2>
+        <ul>
+          <li><strong>Portfolio Website:</strong> <a href="#">View Project</a></li>
+          <li><strong>ToDo App:</strong> <a href="https://github.com/yourusername/todo-app" target="_blank">GitHub Repo</a></li>
+          <li><strong>Calculator:</strong> <a href="convertor.html" target="_blank">Live Demo</a></li>
+        </ul>
+      </section>
+
+      <section class="contact" id="contact">
+        <h2>Contact</h2>
+        <p><strong>Email:</strong> <a href="mailto:Atharvap729@gmail.com">Atharvap729@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+919322185995">+919322185995</a></p>
+        <div class="social-links">
+          <h3>Find me on</h3>
+          <a href="https://github.com/yourusername" target="_blank"> GitHub</a>
+          <a href="https://linkedin.com/in/your-actual-username" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com/yourusername" target="_blank"> Twitter</a>
+        </div>
+      </section>
+
+      <section class="internships" id="internships">
+        <h2>Internships & Certificates</h2>
+        <ul>
+          <li><strong>AI and Machine Learning Internship:</strong> <a href="#">Certificate</a></li>
+          <li><strong>Data Engineering Virtual Internship:</strong> <a href="#">Certificate</a></li>
+        </ul>
+      </section>
+
+      <section class="message" id="message">
+        <h2>Send Me a Message</h2>
+        <form action="https://formspree.io/f/yourformid" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Atharv Patil. All rights reserved.</p>
+  </footer>
+</body>
+</html>
